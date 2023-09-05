@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  email              String     @id @map(name: "id")
+  password           String     @map(name: "password")
+  name               String     @map(name: "name")
+  phone_number       String?    @map(name: "phone_number")
+  parent_phone_number String?    @map(name: "parent_phone_number")
+  grade              Int       @map(name: "grade")
+  branch             String     @map(name: "branch")
+  @@map(name: "User")
+}
+
+model Board {
+  board_id   Int       @id @map(name: "board_id")
+  writer     String    @map(name: "writer")
+  title      String    @map(name: "title")
+  content    String?   @map(name: "content")
+  regdate    DateTime  @map(name: "regdate")
+  updatedate DateTime? @map(name: "updatedate")
+  deletedate DateTime? @map(name: "deletedate")
+  @@map(name: "Board_normal")
+}
